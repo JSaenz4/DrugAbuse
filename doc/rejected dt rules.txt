@@ -1,0 +1,165 @@
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW ALCEVER=1; @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(CIGOFRSM in ("1" "97" "99" )) AND (MR30EST in ("1" "2" "5" "6" "93" "94" "97" "98" "99" )) AND (AGE2 > 7.5) AND (CIGARREC <= 9)
+	Would definitely smoke cigarette if best friend offered or refused or skipped AND 1-5 days or 20-30 days used mj in past 30 or missing/didn't use AND older than 18.5 AND smoked cigar in lifetime
+(CIGOFRSM in ("1" "97" "99" )) AND (MR30EST in ("1" "2" "5" "6" "93" "94" "97" "98" "99" )) AND (AGE2 > 7.5) AND (CIGARREC > 9) AND (RKFQDBLTXXXX <= 4.5) AND (CIGTRY <= 20.5)
+	Would definitely smoke cigarette if best friend offered or refused or skipped AND 1-5 days or 20-30 days used mj in past 30 or missing/didn't use AND older than 18.5 AND ______ AND drive AND first smoked cigarette younger than 20.5
+(CIGOFRSM in ("1" "97" "99" )) AND (MR30EST in ("1" "2" "5" "6" "93" "94" "97" "98" "99" )) AND (AGE2 <= 7.5) AND (RDIFMJXXXX in ("1" )) AND (MMLSUNITXXXX <= 48) AND (MJYRTOT > 20.5)
+	Would definitely smoke cigarette if best friend offered or refused or skipped AND 1-5 days or 20-30 days used mj in past 30 or missing/didn't use AND younger than 18.5 AND mj fairly or very easy to obtain AND _____ AND used mj 20.5 days or more in past 12 months 
+(CIGOFRSM in ("1" "97" "99" )) AND (MR30EST in ("3" "4" "91" )) AND (CIGTRY <= 31.5) AND (AGE2 > 9.5) AND (EDUCCAT2 in ("2" "3" "4" )) AND (CI30EST in ("1" "2" "4" "5" "93" "94" "97" "99" ))
+	Would definitely smoke cigarette if best friend offered or refused or skipped AND 6-19 days used mj in past 30 or missing/didn't use AND first smoked cigarette younger than 31.5 AND older than 20.5 AND high school graduate, some college, or college graduate AND smoked cigar 1-5 days, or 10-29 days in past 30 days or other
+(CIGOFRSM in ("1" "97" "99" )) AND (MR30EST in ("1" "2" "5" "6" "93" "94" "97" "98" "99" )) AND (AGE2 > 7.5) AND (CIGARREC > 9) AND (RKFQDBLTXXXX <= 4.5) AND (CIGTRY > 20.5)
+	Would definitely smoke cigarette if best friend offered or refused or skipped AND 1-5 days or 20-30 days used mj in past 30 or missing/didn't use AND older than 18.5 AND _____ AND drive AND first smoked cigarette older than 20.5
+(CIGOFRSM in ("1" "97" "99" )) AND (MR30EST in ("1" "2" "5" "6" "93" "94" "97" "98" "99" )) AND (AGE2 > 7.5) AND (CIGARREC > 9) AND (RKFQDBLTXXXX > 4.5)
+	Would definitely smoke cigarette if best friend offered or refused or skipped AND 1-5 days or 20-30 days used mj in past 30 or missing/didn't use AND older than 18.5 AND _____ AND don't drive
+(CIGOFRSM in ("1" "97" "99" )) AND (MR30EST in ("3" "4" "91" )) AND (CIGTRY <= 31.5) AND (AGE2 > 9.5) AND (EDUCCAT2 in ("2" "3" "4" )) AND (CI30EST in ("6" "91" "98" ))
+	Would definitely smoke cigarette if best friend offered or refused or skipped AND 6-19 days used mj in past 30 or missing/didn't use AND first smoked cigarette younger than 31.5 AND older than 20.5 AND high school graduate, some college, or college graduate AND smoked cigar all 30 days of last 30 days or other
+.91
+
+Most common attributes: (CIGOFRSM in ("1" "97" "99" )); (MR30EST in ("1" "2" "5" "6" "93" "94" "97" "98" "99" )) or (MR30EST in ("3" "4" "91" )); (AGE2 > 7.5) or (AGE2 > 9.5); 
+	Would definitely smoke cigarette if best friend offered or refused or skipped 
+	1-5 days or 20-30 days used mj in past 30 or missing/didn't use 
+	6-19 days used mj in past 30 or missing/didn't use
+	older than 18.5
+	older than 20.5
+
+
+Notes:
+
+	
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW ALCEVER=2; @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(CIGOFRSM in ("2" "3" "4" "94" "98" )) AND (MJREC > 51) AND (RDIFMJXXXX in ("-9" "0" )) AND (IRMARIT in ("1" "99" )) AND (CIGWILYR in ("4" "97" "98" ))
+	Would probably, probably not, or definitely not accept a cigarette their best friend offered them (all but definitely yes) or don't know or blank AND mj recency was null or skipped AND mj probably impossible, very difficult, or fairly difficult to find (not fairly or very easy) AND married or skipped AND definitely don't think they'll smoke cig in next year or refused or blank
+(MJREC > 51) AND (RDIFMJXXXX in ("-9" "0" )) AND (IRMARIT in ("2" "4" )) AND (CIGOFRSM in ("4" "98" ))
+	mj recency was null or skipped AND mj probably impossible, very difficult, or fairly difficult to find (not fairly or very easy) AND widowed or never been married AND would definitely not accept a cigarette their best friend offered them (all but definitely yes) or blank
+(CIGOFRSM in ("2" "3" "4" "94" "98" )) AND (MJREC > 51) AND (RDIFMJXXXX in ("1" )) AND (YESTSALCXXXX <= 2.5) AND (SNFREC > 3.5) AND (AGE2 <= 5.5)
+	Would probably, probably not, or definitely not accept a cigarette their best friend offered them (all but definitely yes) or don't know or blank AND mj recency was null or skipped AND mj fairly or very easy to get AND between a few and most (or less) of the students they go to class with drink alcohol AND it's been more than 3 years since they've used snuff AND younger than 16.5
+(CIGOFRSM in ("2" "3" "4" "94" "98" )) AND (MJREC > 51) AND (RDIFMJXXXX in ("-9" "0" )) AND (IRMARIT in ("1" "99" )) AND (CIGWILYR in ("1" "2" "3" "94" "99" ))
+	Would probably, probably not, or definitely not accept a cigarette their best friend offered them (all but definitely yes) or don't know or blank AND mj recency was null or skipped AND mj probably impossible, very difficult, or fairly difficult to find (not fairly or very easy) AND married or skipped AND definitely think, probably think, or probably don't think they'll smoke cig in next 12 months or don't know or skipped
+(CIGOFRSM in ("1" "97" "99" )) AND (MR30EST in ("3" "4" "91" )) AND (CIGTRY > 31.5) AND (EDUCCAT2 in ("1" "2" "5" )) AND (AGE2 <= 9.5) AND (RKFQDNGRXXXX <= 1.5)
+	Would definitely smoke cigarette if best friend offered or refused or skipped AND 6-9 days or 10-19 days used mj in past 30 days or never used mj AND first used cigarette after 31.5 years old AND less than high school, high school grad, or 12-17 year old AND younger than 20.5 years old AND very rarely get a kick out of doing dangerous things
+(CIGOFRSM in ("2" "3" "4" "94" "98" )) AND (MJREC > 51) AND (RDIFMJXXXX in ("1" )) AND (YESTSALCXXXX > 2.5) AND (CIGWILYR in ("4" "97" "98" )) AND (CGR30BR2 <= 9992)
+	Would probably, probably not, or definitely not accept a cigarette their best friend offered them (all but definitely yes) or don't know or blank AND mj recency was null or skipped AND mj fairly or very easy to get AND between most of and all of the students they go to class with drink alcohol AND definitely don't think they'll smoke cig in next year or refused or blank AND favorite cigarette brand given
+(MJREC > 51) AND (RDIFMJXXXX in ("-9" "0" )) AND (IRMARIT in ("2" "4" )) AND (CIGOFRSM in ("2" "3" "94" ))
+	mj recency was null or skipped AND mj probably impossible, very difficult, or fairly difficult to find (not fairly or very easy) AND widowed or never been married AND probably would, probably wouldn't, or don't know if they'd smoke a cig their best friend offered them
+.61
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW HEREVER=1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(COCEVER in ("1" )) AND (GNNDREUSXXXX in ("1" "2" "94" "97" "98" )) AND (RKDIFHERXXXX > 2.5)
+.81
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW HEREVER=2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(COCEVER in ("2" "94" "97" )) AND (GNNDREUSXXXX in ("98" "99" )) AND (OXYCAGE <= 54) AND (IRFAMIN3XXXX <= 5.5) AND (CIGTRY > 16.5)
+(COCEVER in ("2" "94" "97" )) AND (GNNDREUSXXXX in ("98" "99" )) AND (OXYCAGE <= 54) AND (IRFAMIN3XXXX > 5.5)
+(COCEVER in ("2" "94" "97" )) AND (GNNDREUSXXXX in ("98" "99" )) AND (OXYCAGE > 54) AND (MTHDEALRXXXX in ("1" "6" "93" "94" "97" "98" )) AND (CIG30BR2 <= 117.5) AND (RID1 > 32359)
+(COCEVER in ("2" "94" "97" )) AND (GNNDREUSXXXX in ("98" "99" )) AND (OXYCAGE > 54) AND (MTHDEALRXXXX in ("3" "81" "91" )) AND (LSDAGE <= 18.5) AND (WTPOUND2XXXX > 152.5)
+(COCEVER in ("1" )) AND (GNNDREUSXXXX in ("99" )) AND (OXYCAGE > 988) AND (CRKYRTOT in ("103" "120" "208" "24" "312" "355" "36" "47" "5" "991" "997" "998" )) AND (CIGAGE > 25.5) AND (COCAGE <= 24.5)
+(COCEVER in ("1" )) AND (GNNDREUSXXXX in ("99" )) AND (OXYCAGE > 988) AND (CRKYRTOT in ("103" "120" "208" "24" "312" "355" "36" "47" "5" "991" "997" "998" )) AND (CIGAGE <= 25.5) AND (CIGREGWKXXXX <= 1.5)
+(COCEVER in ("2" "94" "97" )) AND (GNNDREUSXXXX in ("98" "99" )) AND (OXYCAGE > 54) AND (MTHDEALRXXXX in ("1" "6" "93" "94" "97" "98" )) AND (CIG30BR2 > 117.5)
+1
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW LSD=1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(AGE2 > 13.5) AND (COCAGE <= 23.5) AND (AMYLNIT <= 2.5)
+(AGE2 > 13.5) AND (COCAGE <= 23.5) AND (AMYLNIT > 2.5)
+(AGE2 <= 13.5) AND (PSILCY in ("1" )) AND (ECSAGE <= 26.5) AND (RKDIFLSDXXXX > 2.5)
+(AGE2 > 13.5) AND (COCAGE > 23.5) AND (ECSTASY in ("1" "94" )) AND (PSILCY in ("1" ))
+(AGE2 > 13.5) AND (COCAGE > 23.5) AND (ECSTASY in ("2" ))
+.64
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW LSD=2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(AGE2 <= 13.5) AND (PSILCY in ("2" "3" "94" "97" )) AND (NEWRACE2 > 1.5)
+(AGE2 > 13.5) AND (COCAGE > 23.5) AND (ECSTASY in ("1" "94" )) AND (PSILCY in ("2" "3" "94" "97" ))
+(AGE2 <= 13.5) AND (PSILCY in ("1" )) AND (ECSAGE > 26.5)
+(AGE2 <= 13.5) AND (PSILCY in ("2" "3" "94" "97" )) AND (NEWRACE2 <= 1.5)
+(AGE2 <= 13.5) AND (PSILCY in ("1" )) AND (ECSAGE <= 26.5) AND (RKDIFLSDXXXX <= 2.5)
+.52
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW ECSTASY=1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(CATAG3 in ("2" "3" )) AND (COCEMOPBXXXX in ("1" "2" "93" "98" )) AND (XNAXATVN in ("2" "3" "91" "94" )) AND (PSILCY in ("2" )) AND (LSDAGE > 18.5)
+(CATAG3 in ("2" "3" )) AND (COCEMOPBXXXX in ("91" "97" )) AND (PSILCY in ("2" )) AND (PEYOTE in ("2" )) AND (LSDAGE > 22.5) AND (SEXRACE > 1.5)
+(CATAG3 in ("2" "3" )) AND (COCEMOPBXXXX in ("1" "2" "93" "98" )) AND (XNAXATVN in ("1" ))
+(CATAG3 in ("2" "3" )) AND (COCEMOPBXXXX in ("1" "2" "93" "98" )) AND (XNAXATVN in ("2" "3" "91" "94" )) AND (PSILCY in ("1" "3" "94" "97" ))
+(CATAG3 in ("2" "3" )) AND (COCEMOPBXXXX in ("91" "97" )) AND (PSILCY in ("2" )) AND (PEYOTE in ("2" )) AND (LSDAGE > 22.5) AND (SEXRACE <= 1.5)
+(CATAG3 in ("2" "3" )) AND (COCEMOPBXXXX in ("91" "97" )) AND (PSILCY in ("1" "3" "94" "97" )) AND (LSDREC <= 50)
+(CATAG3 in ("2" "3" )) AND (COCEMOPBXXXX in ("1" "2" "93" "98" )) AND (XNAXATVN in ("2" "3" "91" "94" )) AND (PSILCY in ("2" )) AND (LSDAGE <= 18.5)
+.54
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW ECSTASY=0 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(CATAG3 in ("2" "3" )) AND (COCEMOPBXXXX in ("91" "97" )) AND (PSILCY in ("2" )) AND (PEYOTE in ("1" "94" "97" ))
+(CATAG3 in ("1" "4" "5" )) AND (PREGAGE2 in ("4" ))
+(CATAG3 in ("2" "3" )) AND (COCEMOPBXXXX in ("91" "97" )) AND (PSILCY in ("1" "3" "94" "97" )) AND (LSDREC > 50)
+(CATAG3 in ("1" "4" "5" )) AND (PREGAGE2 in ("1" "3" ))
+(CATAG3 in ("2" "3" )) AND (COCEMOPBXXXX in ("91" "97" )) AND (PSILCY in ("2" )) AND (PEYOTE in ("2" )) AND (LSDAGE <= 22.5)
+.52
+
+	
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW COCEVER=1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(MJREC <= 8.5) AND (HALLREC <= 51.5) AND (YEYSELLXXXX > 2.5) AND (LSDREC in ("1" "2" "3" "9" )) AND (MTHDEALRXXXX > 92)
+(MJREC <= 8.5) AND (HALLREC <= 51.5) AND (YEYSELLXXXX > 2.5) AND (LSDREC in ("1" "2" "3" "9" )) AND (MTHDEALRXXXX <= 92) AND (VALMDIAZ in ("1" ))
+(MJREC <= 8.5) AND (HALLREC <= 51.5) AND (YEYSELLXXXX > 2.5) AND (LSDREC in ("11" "8" "91" "97" "98" )) AND (VICOLOR <= 1.5) AND (ECSAGE <= 988)
+(MJREC <= 8.5) AND (HALLREC <= 51.5) AND (YEYSELLXXXX > 2.5) AND (LSDREC in ("1" "2" "3" "9" )) AND (MTHDEALRXXXX <= 92) AND (VALMDIAZ in ("2" "91" "94" "97" "98" ))
+(MJREC <= 8.5) AND (HALLREC > 51.5) AND (AGE2 > 10.5) AND (MTHDEALRXXXX > 92)
+(MJREC <= 8.5) AND (HALLREC > 51.5) AND (AGE2 <= 10.5) AND (RDIFCOCXXXX in ("-9" "0" )) AND (HERAGE <= 506)
+.56
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW COCEVER=2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(MJREC > 8.5) AND (TXYREVERXXXX <= 2.5) AND (IRFAMIN3XXXX > 3.5) AND (RDIFHERXXXX in ("-9" "0" ))
+(MJREC <= 8.5) AND (HALLREC <= 51.5) AND (YEYSELLXXXX <= 2.5) AND (ANALAGE > 988) AND (YESTSCIGXXXX > 2.5) AND (MJPGOTXXXX <= 2)
+(MJREC <= 8.5) AND (HALLREC <= 51.5) AND (YEYSELLXXXX <= 2.5) AND (ANALAGE > 988) AND (YESTSCIGXXXX <= 2.5)
+(MJREC <= 8.5) AND (HALLREC <= 51.5) AND (YEYSELLXXXX <= 2.5) AND (ANALAGE <= 988) AND (CIGREC > 2.5)
+(MJREC > 8.5) AND (TXYREVERXXXX > 2.5) AND (MTHAMPXXXX > 1.5) AND (HALLREC <= 5.5) AND (IREDUC2 <= 9.5)
+(MJREC > 8.5) AND (TXYREVERXXXX > 2.5) AND (MTHAMPXXXX > 1.5) AND (HALLREC > 5.5) AND (ALCCUT1XXXXX <= 95.5) AND (AGE2 <= 13.5)
+(MJREC > 8.5) AND (TXYREVERXXXX > 2.5) AND (MTHAMPXXXX > 1.5) AND (HALLREC > 5.5) AND (ALCCUT1XXXXX <= 95.5) AND (AGE2 > 13.5)
+.99
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW CRKEVER=1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(HERAGE <= 518.5)
+(HERAGE > 518.5) AND (MTHDEALRXXXX <= 92) AND (RDIFCRKXXXX in ("1" )) AND (AGE2 > 12.5) AND (TXEVERXXXX in ("1" "85" "97" ))
+.54
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW CRKEVER=2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(HERAGE > 518.5) AND (MTHDEALRXXXX <= 92) AND (RDIFCRKXXXX in ("-9" "0" )) AND (GRPHLTINXXXX in ("1" "2" "94" "98" )) AND (CIGAGE > 16.5) AND (RKDIFCOCXXXX > 1.5)
+(HERAGE > 518.5) AND (MTHDEALRXXXX <= 92) AND (RDIFCRKXXXX in ("-9" "0" )) AND (GRPHLTINXXXX in ("1" "2" "94" "98" )) AND (CIGAGE <= 16.5) AND (CIGINCTLXXXX > 2.5)
+(HERAGE > 518.5) AND (MTHDEALRXXXX <= 92) AND (RDIFCRKXXXX in ("1" )) AND (AGE2 <= 12.5) AND (TRNEWA <= 9994.5)
+(HERAGE > 518.5) AND (MTHDEALRXXXX <= 92) AND (RDIFCRKXXXX in ("-9" "0" )) AND (GRPHLTINXXXX in ("97" "99" )) AND (AGE2 <= 13.5) AND (MORPHINE > 3.5)
+(HERAGE > 518.5) AND (MTHDEALRXXXX <= 92) AND (RDIFCRKXXXX in ("-9" "0" )) AND (GRPHLTINXXXX in ("1" "2" "94" "98" )) AND (CIGAGE > 16.5) AND (RKDIFCOCXXXX <= 1.5)
+(HERAGE > 518.5) AND (MTHDEALRXXXX <= 92) AND (RDIFCRKXXXX in ("1" )) AND (AGE2 <= 12.5) AND (TRNEWA > 9994.5)
+(HERAGE > 518.5) AND (MTHDEALRXXXX <= 92) AND (RDIFCRKXXXX in ("-9" "0" )) AND (GRPHLTINXXXX in ("1" "2" "94" "98" )) AND (CIGAGE <= 16.5) AND (CIGINCTLXXXX <= 2.5)
+.8
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW PSILCY=1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(NITOXID in ("1" )) AND (LSD in ("1" ))
+(NITOXID in ("2" "91" "94" "97" )) AND (SEXRACE <= 1.5) AND (MJAGE <= 29) AND (MRDAYPWK <= 89)
+(NITOXID in ("2" "91" "94" "97" )) AND (SEXRACE > 1.5) AND (COCAGE > 31) AND (ECSREC > 50) AND (ALCFMCTDXXXX > 98.5) AND (LSD in ("2" "3" "94" ))
+(NITOXID in ("1" )) AND (LSD in ("2" "3" "94" ))
+(NITOXID in ("2" "91" "94" "97" )) AND (SEXRACE <= 1.5) AND (MJAGE <= 29) AND (MRDAYPWK > 89)
+(NITOXID in ("2" "91" "94" "97" )) AND (SEXRACE > 1.5) AND (COCAGE > 31) AND (ECSREC <= 50) AND (LSDAGE <= 22.5)
+(NITOXID in ("2" "91" "94" "97" )) AND (SEXRACE > 1.5) AND (COCAGE <= 31)
+.52
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW PSILCY=2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(NITOXID in ("2" "91" "94" "97" )) AND (SEXRACE > 1.5) AND (COCAGE > 31) AND (ECSREC <= 50) AND (LSDAGE > 22.5)
+(NITOXID in ("2" "91" "94" "97" )) AND (SEXRACE <= 1.5) AND (MJAGE > 29)
+(NITOXID in ("2" "91" "94" "97" )) AND (SEXRACE > 1.5) AND (COCAGE > 31) AND (ECSREC > 50) AND (ALCFMCTDXXXX <= 98.5)
+(NITOXID in ("2" "91" "94" "97" )) AND (SEXRACE > 1.5) AND (COCAGE > 31) AND (ECSREC > 50) AND (ALCFMCTDXXXX > 98.5) AND (LSD in ("1" ))
+.66
+	

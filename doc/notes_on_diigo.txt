@@ -1,0 +1,621 @@
+===================NOTES=======================	
+
+===================TO DO=======================
+PARTIALLY DONE - see if they have my conclusions
+PARTIALLY DONE - check conclusions in r
+
+===================TO PREDICT==================
+*mjever, mj, mr
+*herever=1
+*hrdaypwk=7? her hr same
+*lsd=1 (ever)
+*ecstasy=1 (ever)
+lsdrec time since last used
+ecsrec time since last used
+*hldaypwk=7?
+*age2
+nomarr2 num times married
+*service served in armed forces
+milstat military status
+*health overall health
+*IREDUC2 education
+*irsex sex
+irmarit marital status
+catage age category
+sexage age/gender
+*newrace2 race
+sexrace 
+schdskip days skipped school
+*jbstatr2 work situation past week
+wrkidst2 type of business
+*wrkhrsw2 hours worked last week
+wrkunemp time w/ no job past 12 mo
+workblah #days skipped work past 30 dys
+drgplcy did workplace have drug policy
+usdrgtst workplace drug tests?
+pden00 pop density 2000
+
+================FINDINGS=====================
+
+classify svm cigever
+	*****cigever up with alctry up (ALSO IN GLM)
+		more you try alcohol, more you're likely to have tried cigarette
+	*****cigever up with mjever up (ALSO IN GLM)
+		more you do mj, more you're like to have tried cig
+		
+	***irmarit=3 increases w/ cigever=1	
+		more you're divorced or separated, more you have ever smoked cigs
+	***more WORKDAYS you missed, more you've tried cigs (ALSO IN GLM)
+	*****college graduates collenr=1 most likely to have not tried cigs (ALSO IN GLM)
+	
+		
+	*****seems like something special (legality, ease of getting?) with cig, alc, mj. No other drugs showed up
+	
+classify glm cigever	
+	*****health2=1 (excellent health) up with cigever=2 never smoked
+	
+classify NB cigever
+	annoying, probs so predicts cigever=2 for all stuff where other drugs are 98, people who don't do any
+	
+cluster km 
+	not too useful, continuousness messed up
+
+cluster oc
+	not useful, just picks null clusters
+	
+cluster em
+	If
+	CIGEVER = 2 never smoked cig
+	And
+	CATAG2 = 1 12-17 yo
+	And
+	IIEMPST4 = 9 12-17 yo
+	And
+	CATAGE = 1 12-17 yo
+	And
+	II2EMST4 = 9 12-17 yo
+		
+		Another same as above in a second cluster BUT WITH CIGEVER=1
+	
+	If
+	CIGEVER = 2
+	And
+	EMPSTAT4 In (2, 1)
+	And
+	EMPSTATY In (2, 1)
+	And
+	1 <= DRGPLCY <= 2
+	And
+	1 <= USALCTST <= 2
+	
+		Non cigarette users ever who are employed..
+		
+	If
+	CIGEVER = 1
+	And
+	CATAG2 = 3
+	And
+	CATAGE In (3, 4)
+	And
+	CIG30MEN <= 93
+	And
+	CATAG3 In (3, 5, 4)
+	
+		26+ smokers
+		
+	
+	
+regress glm alcdaypwk
+
+
+regress svm alcdaypwk
+
+
+
+classify dt aldaypwk
+	
+classify nb aldaypwk
+	*****sednewb through sednewe more sedatives, more likely drink 7 days/wk (MIXTURE IS DANGEROUS)
+	*****sedrec says alot used sedatives in last 12 months, but also drank every day, must be mixing (DANGEROUS)
+		they both have the same or similar effect to DEPRESS the brain. In this way, they can synergize and compound one anothers' effects
+	****svdaypwk says a lot used sedatives 1, 5, 6 times pwk last year WHILE ALC 7day/wk!
+
+classify glm alcever
+	*****as age increases (age2), alcever more likely to be 1
+		*****older you are, catag6^, less likely to have had mj
+		*****points to society moving away from alc towards mj, legalization, popularity, health, safety
+	****more recently had mj, mjrec, more likely to have drank
+	****more had mj, mjever, more likely to have drank
+	****more recently had cigarette, cigrec, more likely to have drank
+	****more had cig, cigever, more likely to have drank
+	***people who cigofrsm=4 would definitely refuse an offered cigarette less likely to have had alc
+	**those not in college 18-22, collenr=2, less likely to have drank
+	
+
+classify svm alcever
+	*people who served in military during 90's actd9001=1 and vietnam era actdviet=1 slightly more likely to have drank
+	****educcat2=4 college graduate very likely to have drank
+	*if smoked 100 cigs in life cig100lf, more likely to drink
+	**self employed in past 12 mo, wrkslfem=3, more likely to drink
+	
+		
+classify dt alcever
+	****If 98%
+	CIGOFRSM isIn ( "1" "97" "99" ) If definitely would accept a cigarette
+	And
+	MJEVER isIn ( "1" "97" ) Have used marijuana
+	And
+	AGE2 > 7.5 Age over 21
+	Then alcever=1
+	
+	***If 95%
+	CIGOFRSM isIn ( "1" "97" "99" ) If definitely would accept a cigarette
+	And
+	MJEVER isIn ( "2" "94" ) If have never done marijuana
+	And
+	IREDUC2 > 7.5 Highschool graduate
+	And
+	AGE2 > 9.5 Age over 21
+	Then alcever=1
+	
+	*If 79%
+	MJREC > 51 Never used marijuana
+	And
+	IRMARIT isIn ( "2" "4" ) Widowed or never been married
+	And
+	CIGOFRSM isIn ( "4" "98" ) Would definitely not accept cigarette
+	Then alcever=2
+	
+
+	**If 75%
+	CIGOFRSM isIn ( "1" "97" "99" ) If definitely would accept a cigarette
+	And
+	MJEVER isIn ( "2" "94" ) If have never done marijuana
+	And
+	EDUCCAT2 isIn ( "3" "4" ) With some college or college grad education
+	Then alcever=1
+	
+	
+classify nb alcever
+	just predicts =2 from 98 stuff
+	
+classify glm mjever
+	*****older you are, catag6^ and age2^, less likely to have had mj
+		*****as age increases (age2), alcever more likely to be 1
+		*****points to society moving away from alc towards mj, legalization, popularity, health, safety
+	***more recently had alcohol, alcrec lower, more likely to have had mj
+	*****as education increases ireduc2^, more likely to have had mj
+	***more recently had cigarette, cigrec lower, more likely to have had mj
+	*if ever had cocaine, cocever=1, more likely to ahve had mj
+
+classify dt mjever
+	If 94%
+	CIGTRY > 988
+	And
+	ALCTRY <= 19.5
+	And
+	CIGAREVR isIn ( "2" "94" )
+	And
+	HALNEWB <= 9994.5
+	And
+	NODR30A > 989
+	And
+	IREDUC2 <= 3.5
+	Then 2
+	
+	this thing is huge, i'll come back to it later
+	
+
+classify svm mjever
+	*****younger you first had alcohol or cigs, alctry and cigtry lower, more likely to have had mj
+		if broke law to get underage alc, will probably break law to get mj
+	**if widowed, less likely to have had mj...?
+	****wrkunemp=2 people who were never jobless in past 12 mo more likely to have had mj
+	
+=========Second Run===========
+	
+classify glm herever 
+	***earlier tried cocaine cocage-, more likely to have had heroin
+	**more often had cocaine cocever=1, more likely to have had heroin
+	*****more recently had mj, alc, oxycontin, -rec, more likely to have had heroin
+	*****younger first had cig, mj, oxycontin, -age, more likely to have had heroin
+		*****why OXYCONTIN MAYBE CODEINE TOO with mj, alc, cig? it's opioid like heroin and can lead to her use or develop from her use. mostly to her use
+
+classify svm herever
+	*****oxyage and oxyrec lower, herever higher (OXYCONTIN, MAYBE CODEINE TOO)
+	***pden00=2 or statistical area fewer than 1 million people as opposed to >, herever higher
+	****more drinks, dr5day, herever higher (DANGEROUS)
+	*****as education less, ireduc2, herever higher
+	*****irmarit=3 divorced, separated, to lesser extent widowed, herever higher
+	
+class glm lsd
+	***mjrec-, lsd+
+	****catage=4, over 35, lsd+
+	**psilcy=1, used mushrooms, lsd+
+	
+class svm lsd
+	***nitoxid=1 used nitrous oxide, lsd+
+	****catage=4, over 35, lsd+
+	*mjever, mjrec as expected
+	
+class glm ecstasy
+	****psilcy=2, never used mushrooms, ecs+
+	**catag2=2, 18-25, ecs+
+	***nodr30a+, # drinks 30 days, ecs+
+	***nitoxid=1 used nitrous oxide, ecs+
+		*****why nitoxid=1 for hallucinagens lsd and ecs? idk, nitrous oxide is different, dissociative and euphoric, not hallucinogenic
+	***catag3=3, 26-34, ecs+
+	***service=2, never been in armed forces, ecs+
+
+class glm cocever
+	****mjrec-, mjage-, coc+
+	****crakrec-, coc+ (crack)
+	*mjever=1, coc+
+	****age2+, coc+
+	***ecstasy=1, coc+
+	***herever=1, coc+
+	**lsd=1, coc+
+	***oxycrec-, more recently had oxycontin, coc+
+	***herage-, coc+
+
+=======================AGE2=====================================
+AGE2     Len: 2     RECODE - FINAL EDITED AGE      Freq     Pct 
+1  =  Respondent is 12 years old ...........................................................................     2725    4.94 
+2  =  Respondent is 13 years old ...........................................................................     2925    5.30 
+3  =  Respondent is 14 years old ...........................................................................     3039    5.51 
+4  =  Respondent is 15 years old ...........................................................................     3006    5.45 
+5  =  Respondent is 16 years old ...........................................................................     3058    5.54 
+6  =  Respondent is 17 years old ...........................................................................     2983    5.41 
+7  =  Respondent is 18 years old ...........................................................................     2343    4.25 
+8  =  Respondent is 19 years old ...........................................................................     2122    3.85 
+9  =  Respondent is 20 years old ...........................................................................     2244    4.07 
+10  =  Respondent is 21 years old .........................................................................     2220    4.02 
+11  =  Respondent is 22 or 23 years old ................................................................     4643    8.42 
+12  =  Respondent is 24 or 25 years old ................................................................     4570    8.28 
+13  =  Respondent is between 26 and 29 years old ...............................................     2557    4.64 
+14  =  Respondent is between 30 and 34 years old ...............................................     2889    5.24 
+15  =  Respondent is between 35 and 49 years old ...............................................     7511  13.62 
+16  =  Respondent is between 50 and 64 years old ...............................................     3936    7.14 
+17  =  Respondent is 65 years old or older ............................................................     2389    4.33 
+
+	
+=======================DT COMBINED==============================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW CIGEVER=1; (HAVE SMOKED) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(MJREC <= 8.5) AND (SDNTFTPT in ("2" "98" "99" )) AND (HALEMOPBXXXX in ("1" "2" "93" "94" )) AND (MJAGE <= 17.5)
+	Used MJ within past 12 months AND work part time or blank/skip AND _______ AND first used MJ at 17.6 years old or earlier
+(MJREC <= 8.5) AND (SDNTFTPT in ("2" "98" "99" )) AND (HALEMOPBXXXX in ("91" "97" "98" )) AND (ALCTRY <= 15.5)
+	Used MJ within past 12 months AND work part time or blank/skip AND never used hallucinogens, refused, blank AND first used alc at 15.5 years old or earlier
+(MJREC <= 8.5) AND (SDNTFTPT in ("1" "94" )) AND (PCP in ("1" "2" "97" ))
+	Used MJ within past 12 months AND work full time or don't know AND used PCP, didn't use PCP, or don't know if used
+(MJREC <= 8.5) AND (SDNTFTPT in ("2" "98" "99" )) AND (HALEMOPBXXXX in ("1" "2" "93" "94" )) AND (MJAGE > 17.5)
+	Used MJ within past 12 months AND work part time or blank/skip AND _______ AND first used MJ at 17.6 years old or later
+(MJREC <= 8.5) AND (SDNTFTPT in ("2" "98" "99" )) AND (HALEMOPBXXXX in ("91" "97" "98" )) AND (ALCTRY <= 17.5) AND (ALCTRY > 15.5)
+	Used MJ within past 12 months AND work part time or blank/skip AND never used hallucinogens, refused, blank AND first used alc between 15.5 years old and 17.5 years old
+(MJREC <= 8.5) AND (SDNTFTPT in ("1" "94" )) AND (PCP in ("91" "94" )) AND (ALDAYPYR > 992) AND (ANLNOLST <= 3)
+	Used MJ within past 12 months AND work full time or don't know AND never used hallucinogens or don't know if used PCP AND use alc rarely or skipped AND non-null or skipped "ever used another pain reliever nonmedically"
+(MJREC <= 8.5) AND (SDNTFTPT in ("2" "98" "99" )) AND (HALEMOPBXXXX in ("91" "97" "98" )) AND (ALCTRY > 17.5) AND (AGE2 > 13.5)
+	Used MJ within past 12 months AND work part time or blank/skip AND never used hallucinogens, refused, blank AND first used alcohol at 17.5 years old or later AND older than 28
+.82
+
+Most common attributes: (MJREC <= 8.5); (SDNTFTPT in ("2" "98" "99" )) or (SDNTFTPT in ("1" "94" )); (HALEMOPBXXXX in ("1" "2" "93" "94" )) or (HALEMOPBXXXX in ("91" "97" "98" ))
+	Used MJ within past 12 months 
+	work part time or blank/skip 
+	work full time or don't know 
+	_____
+	never used hallucinogens, refused, blank 
+
+
+Notes: 
+Using MJ within past 12 months appears in all 7 rules.
+	***More people who smoke MJ also smoke tobacco than vice versa b/c legality (a lot of cig smokers can't smoke mj) so rule makes sense (because just knowing they smoke MJ means they'll probably have smoked cig). MJ smokers often mix MJ and tobacco in a blunt to conserve and lower strength
+Part/full time appears in all, mostly part time workers smoke cigarettes
+Most confident 2 rules have first used MJ at 17.6 yrs or younger, first used alc 15.5 yrs or younger
+	****Looks like to have smoked a cigarette, you're likely to have had the legal, easier obtained gateway drug alcohol around 15 for the first time, then moved on to the easiest obtained illegal drug MJ a few years later. 
+	***First alcohol use between 15.5 and 17.5 years old also appears, more underage drinking=>cig use evidence
+*****Never having used hallucinogens predicts having smoked a cig in 4 of 7 rules, could they be opposite drugs? News: Hallucinogens like MDMA and psilocybin used to treat both nicotine/cig addiction and alcoholism
+Random last rule says older than 28 means likely to have smoked cig
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW CIGEVER=2; (HAVENT SMOKED) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(MJREC > 8.5) AND (ALCEVER in ("2" "94" )) AND (EDUCATN2 <= 11.5) AND (AGE2 <= 3.5) AND (NDTXBUSYXXXX <= 98.5)
+	Last used MJ over 12 months ago AND never had alc or don't know AND 4th year college education or lower AND younger than 14.5 AND _______ 
+(MJREC > 8.5) AND (ALCEVER in ("2" "94" )) AND (EDUCATN2 <= 11.5) AND (AGE2 > 3.5) AND (BOOKEDXXXX in ("2" "94" ))
+	Last used MJ over 12 months ago AND never had alc or don't know AND 4th year college education or lower AND older than 14.5 AND never been arrested and booked for breaking the law or don't know.
+(MJREC > 8.5) AND (ALCEVER in ("2" "94" )) AND (EDUCATN2 <= 11.5) AND (AGE2 <= 3.5) AND (NDTXBUSYXXXX > 98.5)
+	Last used MJ over 12 months ago AND never had alc or don't know AND 4th year college education or lower AND younger than 14.5 AND skipped question about not getting treatment because had no time 
+(MJREC > 8.5) AND (ALCEVER in ("2" "94" )) AND (EDUCATN2 > 11.5) AND (AGE2 <= 15.5)
+	Last used MJ over 12 months ago AND never had alc or don't know AND missing or skipped education AND younger than 42
+(MJREC > 8.5) AND (ALCEVER in ("1" "85" "97" )) AND (SCHENRL <= 1.5) AND (ALCEMOPBXXXX > 42.5)
+	Last used MJ over 12 months ago AND had alc before or refused AND enrolled in any school AND alcohol causing emotional probs is missing
+(MJREC > 8.5) AND (ALCEVER in ("2" "94" )) AND (EDUCATN2 <= 11.5) AND (AGE2 > 3.5) AND (BOOKEDXXXX in ("1" "3" "85" "97" "98" ))
+	Last used MJ over 12 months ago AND never had alc or don't know AND 4th year college education or lower AND older than 14.5 AND have been arrested or booked for breaking the law, refused or blank
+(MJREC > 8.5) AND (ALCEVER in ("1" "85" "97" )) AND (SCHENRL <= 1.5) AND (ALCEMOPBXXXX <= 42.5) AND (ALCYRTOT <= 47)
+	Last used MJ over 12 months ago AND had alc before or refused AND enrolled in any school AND alcohol causing emotional probs is yes or no AND used alcohol 47 or less days of last year
+.71
+
+Most common attributes: (MJREC > 8.5); (ALCEVER in ("2" "94" )) or (ALCEVER in ("1" "85" "97" )); (EDUCATN2 <= 11.5); (AGE2 <= 3.5) or (AGE2 > 3.5)
+	Last used MJ over 12 months ago 
+	never had alc or don't know 
+	had alc before or refused 
+	4th year college education or lower 
+	younger than 14.5
+	older than 14.5
+
+
+Notes: 
+Using MJ last over 12 months before appears in all 7 rules also
+Ever used alcohol in all 7 rules
+	Of those 5 rules with never had alcohol, 2 also say they're younger than 14.5
+		*****Idea: Keeping alcohol away from children makes them less likely to ever smoke a cigarette
+	Of those 2 rules with have had alcohol, both are followed by them being enrolled in any school. 
+		*****So being in school is associated with alcohol but not cig use.
+*****Top confidence rule rules out top 3 drugs (marijuana, alcohol, tobacco) in first 2 terms: No marijuana in a year or never at all, and no alcohol ever means no tobacco
+4th year college education or lower in 4 rules
+****Second most confident predicts never using cig from having never been booked for breaking the law
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW MJEVER=1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(CG30EST in ("1" "2" "3" "4" "5" "6" "93" "94" "98" "99" )) AND (DRVALDRXXXX <= 41.5) AND (INHREC <= 2.5) AND (IREDUC2 > 3.5) AND (ECSTASY in ("1" "2" "97" ))
+(CG30EST in ("1" "2" "3" "4" "5" "6" "93" "94" "98" "99" )) AND (DRVALDRXXXX > 41.5) AND (HALEMOPBXXXX in ("1" "2" "93" "94" )) AND (CCDAYPMO > 92)
+(CG30EST in ("1" "2" "3" "4" "5" "6" "93" "94" "98" "99" )) AND (DRVALDRXXXX <= 41.5) AND (INHREC > 2.5) AND (ANALREC > 2.5) AND (TRDAYPYR > 4.5)
+(CG30EST in ("1" "2" "3" "4" "5" "6" "93" "94" "98" "99" )) AND (DRVALDRXXXX <= 41.5) AND (INHREC > 2.5) AND (ANALREC <= 2.5) AND (HALFMCTDXXXX > 92)
+(CG30EST in ("91" "97" )) AND (DRVALDRXXXX <= 41.5) AND (ANALREC > 2.5) AND (INHYRTOT > 13.5) AND (TRDAYPWK <= 98.5) AND (RITMPHEN in ("1" "81" "91" "94" "97" "98" ))
+(CG30EST in ("1" "2" "3" "4" "5" "6" "93" "94" "98" "99" )) AND (DRVALDRXXXX > 41.5) AND (HALEMOPBXXXX in ("91" "97" "98" )) AND (TXYRDCADXXXX in ("2" "3" "97" "98" "99" )) AND (ALCTRY <= 17.5) AND (COCEVER in ("1" "97" ))
+(CG30EST in ("1" "2" "3" "4" "5" "6" "93" "94" "98" "99" )) AND (DRVALDRXXXX > 41.5) AND (HALEMOPBXXXX in ("1" "2" "93" "94" )) AND (CCDAYPMO <= 92)
+.9
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW MJEVER=2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(CG30EST in ("1" "2" "3" "4" "5" "6" "93" "94" "98" "99" )) AND (DRVALDRXXXX > 41.5) AND (HALEMOPBXXXX in ("91" "97" "98" )) AND (TXYRDCADXXXX in ("81" "91" ))
+(CG30EST in ("91" "97" )) AND (DRVALDRXXXX > 41.5) AND (NDTXBUSYXXXX <= 98.5) AND (ALCREC > 5.5)
+(CG30EST in ("91" "97" )) AND (DRVALDRXXXX > 41.5) AND (NDTXBUSYXXXX > 98.5) AND (HALLAGE > 988) AND (RDIFMJXXXX in ("-9" "0" )) AND (CIGARREC > 9)
+(CG30EST in ("91" "97" )) AND (DRVALDRXXXX > 41.5) AND (NDTXBUSYXXXX > 98.5) AND (HALLAGE > 988) AND (RDIFMJXXXX in ("1" )) AND (ALCYRTOT <= 19.5)
+(CG30EST in ("1" "2" "3" "4" "5" "6" "93" "94" "98" "99" )) AND (DRVALDRXXXX <= 41.5) AND (INHREC <= 2.5) AND (IREDUC2 <= 3.5)
+(CG30EST in ("91" "97" )) AND (DRVALDRXXXX > 41.5) AND (NDTXBUSYXXXX > 98.5) AND (HALLAGE > 988) AND (RDIFMJXXXX in ("-9" "0" )) AND (CIGARREC <= 9)
+(CG30EST in ("91" "97" )) AND (DRVALDRXXXX > 41.5) AND (NDTXBUSYXXXX > 98.5) AND (HALLAGE > 988) AND (RDIFMJXXXX in ("1" )) AND (ALCYRTOT > 19.5)
+.73
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@@@@@@@@@@@@@@@@@@ NON-DRUG CIGEVER=1 (PREDICTING HAVING SMOKED CIG BASED ON NON-DRUG RELATED VARS @@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(YEYSELLXXXX in ("2" "3" "4" "5" "85" "97" "98" "99" )) AND (BOOKED2XXXX in ("1" "85" "97" "98" )) AND (NEWRACE22 in ("1" "3" "4" "6" ))
+	Sold illegal drugs 1+ times AND have been booked/arrested for breaking law or missing AND white, native american, pacific islander, mixed race
+(YEYSELLXXXX in ("2" "3" "4" "5" "85" "97" "98" "99" )) AND (BOOKED2XXXX in ("1" "85" "97" "98" )) AND (NEWRACE22 in ("2" "5" "7" ))
+	Sold illegal drugs 1+ times AND have been booked/arrested for breaking law or missing AND black, asian, hispanic
+(YEYSELLXXXX in ("2" "3" "4" "5" "85" "97" "98" "99" )) AND (BOOKED2XXXX in ("2" "3" "94" )) AND (NEWRACE22 in ("1" "3" "4" "6" )) AND (COLLENR2 in ("-9" "2" "3" "5" )) AND (SNRLGSVCXXXX in ("1" "2" "3" "4" "85" "89" "98" "99" )) AND (HEALTH in ("2" "3" "4" "5" "94" ))
+	Sold illegal drugs 1+ times AND never been booked/arrested for breaking law or don't know AND white, native american, pacific islander, mixed race AND part-time college student, 18-22 and not enrolled in college, or non college aged (12-17, 23+) AND has been to a religious service 24 times or less in past 12 mo AND health any but excellent (very good, good, fair, or poor)
+(YEYSELLXXXX in ("1" "94" )) AND (YESTSCIGXXXX in ("3" )) AND (BOOKED2XXXX in ("1" "3" "85" "97" "98" ))
+	Never sold illegal drugs or don't know AND most of the students they know in their grade smoke cigarettes AND have been booked/arrested for breaking law or missing
+(YEYSELLXXXX in ("2" "3" "4" "5" "85" "97" "98" "99" )) AND (BOOKED2XXXX in ("2" "3" "94" )) AND (NEWRACE22 in ("1" "3" "4" "6" )) AND (COLLENR2 in ("-9" "2" "3" "5" )) AND (SNRLGSVCXXXX in ("1" "2" "3" "4" "85" "89" "98" "99" )) AND (HEALTH in ("1" ))
+	Sold illegal drugs 1+ times AND never been booked/arrested for breaking law or don't know AND white, native american, pacific islander, mixed race AND part-time college student, 18-22 and not enrolled in college, or non college aged (12-17, 23+) AND has been to a religious service 24 times or less in past 12 mo AND health is excellent
+.67
+
+Most common factors 
+	Sold illegal drugs
+	Ever been booked/arrested
+	Race
+
+
+*****Cig=1 Best predictor is having sold illegal drugs, cig=2 best predictor is never having sold illegal drugs
+	Except for cig=1 #4 which is only different one: they've never sold illegal drugs but most peers did cigarettes (only time that occurs) and they have been arrested 
+*****Has been to a religious service 24 times or less in past 12 mo is cool indicator (appears twice)
+*****Never been booked (rare, only 2 rules) appears exclusively with college enrollment (random) religious services (<24), and health (different)
+
+@@@@@@@@@@@@@@@@@@ NON-DRUG CIGEVER=2 (PREDICTING HAVING NEVER SMOKED CIG BASED ON NON-DRUG RELATED VARS @@@@@@@@@@@@@@@@@@ 
+FULL_SIMPLE_RULE
+(YEYSELLXXXX in ("1" "94" )) AND (YESTSCIGXXXX in ("1" "2" "4" "85" "94" "97" "98" "99" )) AND (AGE2 <= 3.5) AND (YESTSMJXXXX in ("1" "2" "4" "85" "94" "98" "99" )) AND (YEYFGTSWXXXX in ("1" "94" )) AND (BOOKED2XXXX in ("2" "94" ))
+	Never sold illegal drugs or don't know AND none of, a few of, or all of students they know in same grade smoke cigarettes AND younger than 14.5 AND none of, a few of, or all of students they know in same grade smoke marijuana AND haven't gotten into a serious fight at school/work in past 12 mo or don't know AND never been booked/arrested for breaking law or don't know
+(YEYSELLXXXX in ("1" "94" )) AND (YESTSCIGXXXX in ("1" "2" "4" "85" "94" "97" "98" "99" )) AND (AGE2 <= 3.5) AND (YESTSMJXXXX in ("1" "2" "4" "85" "94" "98" "99" )) AND (YEYFGTSWXXXX in ("2" "3" "4" "5" "85" "97" "98" ))
+	Never sold illegal drugs or don't know AND none of, a few of, or all of students they know in same grade smoke cigarettes AND younger than 14.5 AND none of, a few of, or all of students they know in same grade smoke marijuana AND have gotten into 1+ serious fights at school/work in past 12 mo or missing
+(YEYSELLXXXX in ("1" "94" )) AND (YESTSCIGXXXX in ("1" "2" "4" "85" "94" "97" "98" "99" )) AND (AGE2 > 3.5) AND (BOOKED2XXXX in ("2" "94" )) AND (YELSTGRDXXXX in ("1" "2" "5" "94" "97" "98" )) AND (YOWRSTHKXXXX in ("2" "94" "97" "98" "99" ))
+	Never sold illegal drugs or don't know AND none of, a few of, or all of students they know in same grade smoke cigarettes AND older than 14.5 AND never been booked/arrested for breaking law or don't know AND made A's or B's in last semester/grading period or missing AND when depression symptoms worst, don't think about killing themselves or missing.
+(YEYSELLXXXX in ("1" "94" )) AND (YESTSCIGXXXX in ("3" )) AND (BOOKED2XXXX in ("2" "94" )) AND (YELSTGRDXXXX in ("1" "5" "98" ))
+	Never sold illegal drugs or don't know AND most of the students they know in same grade smoke cigarettes AND never been booked/arrested for breaking law AND got A's in last semester/grading period or missing 
+(YEYSELLXXXX in ("1" "94" )) AND (YESTSCIGXXXX in ("1" "2" "4" "85" "94" "97" "98" "99" )) AND (AGE2 <= 3.5) AND (YESTSMJXXXX in ("3" "97" ))
+	Never sold illegal drugs or don't know AND none of, a few of, or all of students they know in same grade smoke cigarettes AND younger than 14.5 AND most of the students they know in same grade smoke mj or missing
+.81
+
+Most common factors 
+	Sold illegal drugs
+	*****Amount of peers who smoke cigs
+	Age
+
+All have never sold illegal drugs
+*****2 rules with age other than <14.5 predict having A's in last grading period (first also allows B's) (only times grades appear) 
+
+
+
+
+@@@@@@@@@@@@@@@@@@ NON-DRUG MJEVER=1 @@@@@@@@@@@@@@@@@@ 
+FULL_SIMPLE_RULE
+(YESTSMJXXXX in ("3" "4" "85" "97" "99" )) AND (BOOKED2XXXX in ("1" )) AND (AGE2 <= 16.5) AND (NEWRACE22 in ("1" "3" "4" "6" )) AND (SNYSELLXXXX in ("2" "3" "4" "5" ))
+	If most of, all of, or missing students  they know in their grade use mj AND have been arrested/booked for breaking law AND younger than 57 AND white, native american, or mixed AND sold illegal drugs at least once in past 12 mo
+(YESTSMJXXXX in ("3" "4" "85" "97" "99" )) AND (BOOKED2XXXX in ("1" )) AND (AGE2 <= 16.5) AND (NEWRACE22 in ("1" "3" "4" "6" )) AND (SNYSELLXXXX in ("1" "85" "89" "94" "97" "98" "99" )) AND (ADDPREVXXXX <= 1.5)
+	If most of, all of, or missing students  they know in their grade use mj AND have been arrested/booked for breaking law AND younger than 57 AND never sold illegal drugs  in past 12 moor missing AND have had several days or longer when most of the day they felt sad, empty, or depressed
+(YESTSMJXXXX in ("1" "2" "94" "98" )) AND (AGE2 <= 3.5) AND (YEYSELLXXXX in ("2" "3" "4" "5" ))
+	If none of, or a few of students they know in their grade use mj AND younger than 14.5 AND sold illegal drugs 1 or more times in past 12 mo
+(YESTSMJXXXX in ("3" "4" "85" "97" "99" )) AND (BOOKED2XXXX in ("2" "3" "85" "94" "97" "98" )) AND (SNRLGSVCXXXX in ("1" "2" "3" "4" "85" "89" "98" "99" )) AND (WORKRAND in ("2" )) AND (WRKHIRE in ("2" "3" ))
+	If most of, all of, or missing students  they know in their grade use mj AND haven't been arrested/booked for breaking law or missing AND have been to 24 or fewer religious services in past 12 mo or missing AND it's less likely that they would work for employer that does random drug tests
+(YESTSMJXXXX in ("3" "4" "85" "97" "99" )) AND (BOOKED2XXXX in ("1" )) AND (AGE2 <= 16.5) AND (NEWRACE22 in ("1" "3" "4" "6" )) AND (SNYSELLXXXX in ("1" "85" "89" "94" "97" "98" "99" )) AND (ADDPREVXXXX > 1.5)
+	If most of, all of, or missing students  they know in their grade use mj AND have been arrested/booked for breaking law AND younger than 57 AND white, native american, or mixed AND never sold illegal drugs  in past 12 moor missing AND haven't gv had several days or longer when most of the day they felt sad, empty, or depressed
+.79
+
+Most common factors
+	*****Amount of peers who smoke mj
+	Booked/arrested
+	Age
+
+
+
+@@@@@@@@@@@@@@@@@@ NON-DRUG MJEVER=2 @@@@@@@@@@@@@@@@@@
+FULL_SIMPLE_RULE
+(AGE2 <= 3.5) AND (YEYSELLXXXX in ("1" "85" "94" "97" "98" "99" )) AND (BOOKED2XXXX in ("2" "94" "98" )) AND (YESTSMJXXXX in ("1" "94" "98" ))
+	Younger than 14.5 AND never sold illegal drugs in past 12 mo or missing AND never been booked/arrested for breaking law or don't know/missing AND none of the students they know in their grade use mj or missing 
+(AGE2 <= 3.5) AND (YEYSELLXXXX in ("1" "85" "94" "97" "98" "99" )) AND (BOOKED2XXXX in ("2" "94" "98" )) AND (YESTSMJXXXX in ("2" )) AND (YELSTGRDXXXX in ("1" "5" "98" ))
+	Younger than 14.5 AND never sold illegal drugs in past 12 mo or missing AND never been booked/arrested for breaking law or don't know/missing AND a few of students htey know in their grade use mj or missing AND made A's in last grading period or school doesn't give letter grades or missing 
+(YESTSMJXXXX in ("3" "4" "85" "97" "99" )) AND (BOOKED2XXXX in ("2" "3" "85" "94" "97" "98" )) AND (WORKRAND in ("1" "94" "97" "98" "99" )) AND (JBSTATR22 in ("10" "11" "8" )) AND (YEATNDYRXXXX in ("2" "94" "98" ))
+	Most or all of the students in their grade use mj AND never been arrested for breaking law AND it's more likely they'd work for a company that randomly drug tests. 
+(AGE2 <= 3.5) AND (YEYSELLXXXX in ("1" "85" "94" "97" "98" "99" )) AND (BOOKED2XXXX in ("2" "94" "98" )) AND (YESTSMJXXXX in ("2" )) AND (YELSTGRDXXXX in ("2" "3" "4" "94" "97" ))
+	Younger than 14.5 AND never sold illegal drugs in past 12 mo or missing AND never been booked/arrested for breaking law or don't know/missing AND a few of students htey know in their grade use mj or missing AND made B's, C's, or D's in last grading period or don't know
+(YESTSMJXXXX in ("1" "2" "94" "98" )) AND (AGE2 > 3.5) AND (YEYSELLXXXX in ("1" "85" "94" "98" )) AND (BOOKED2XXXX in ("2" "94" "98" )) AND (YELSTGRDXXXX in ("1" "2" "5" "94" "97" "98" )) AND (YEYSTOLEXXXX in ("1" "85" "94" "98" ))
+	None of or a few of the students in the same grade use mj AND older than 14.5 AND haven't sold illegal drugs in past 12 mo AND never been booked/arrested for breaking law or don't know/missing AND made A's or B's in last grading period or missing AND haven't stolen anything worth more than $50 in past 12 mo or missing. 
+.88
+
+Most important factors
+	Age
+	Ever sold illegal drugs
+	Booked/Arrested
+	*****Amount of peers who do mj
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW CIGEVER CLASSIFICATION @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+SVM
+	yeysell=1-; if you've never sold illegal drugs, less likely to have had cig
+	*****newrace22=2-; if you're black, less likely to have had cig
+	*****newrace22=1+; if you're white, more likely to have had cig
+	snysell=1-; if you haven't sold illegal drugs in the past 12 mo, less likely to have had cig
+	****newrace22=6+; if you're mixed race, more likely to have had cig
+	*****yelstgrd=1-; if you had A's in the last semester or grading period, you're less likely to have had cig
+		inverse is farther down list
+	****newrace22=5-; if you're asian, you're less likely to have smoked cig
+	?****nobooky2=0+; if you haven't been arrested or booked in the past 12 mo, you're more likely to have smoked cig
+	*****irmarit=3+; if you're divorced or separated, you're more likely to have had cig
+	****yowrsthk=1+; if in the last period of time when your depression symptoms were the worst, you thought about killing yourself, you're more likely to have had a cig
+	****movepyr2=3+; if you've moved 3 or more times in past 12 mo, more likely to have smoked cig
+	*****yelstgrd=4+; if you had D's in the last semester or grading period, you're more likely to have had cig
+	*****health=5+; if you have poor health, you're more likely to have had cig
+	***yestscig=4+; if all of the students you know in your grade smoke, you're more likely to have had cig
+	*****collenr=1-; if full time college student aged 18-22, less likely to have had cig
+	****yowrsthk=2-; if in the last period of time when your depression symptoms were the worst, you didn't think about killing yourself, you're less likely to have had a cig
+	***yestsmj=4+; if all students you know in same grade smoke mj, you're more likely to have had cig
+	***yo_mdea2=1+; if you've lost interest or pleasure in most things (depression), then you're more likely to have had cig
+	*****yeystole=4+; if you've stolen 6-9 things over $50, then you're more likely to have had cig
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ NEW MJEVER CLASSIFICATION @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+SVM
+	*nobooky2=999-; if you've never been booked, you're less likely to have had mj
+	*****newrace2=5-; if you're asian, you're less likely to have had mj
+	**yesysmj=4+; if all students you know in same grade smoke mj, you're more likely to have had mj
+	***snrlgsvc=6-; if you've been to more than 52 religious services in past 12 mo, you're less likely to have had mj
+	*****irhh65_2=3-; if there are 2 or more people aged 65+ in household, you're less likely to have had mj
+	*****pregnant=1+; if you're pregnant, you're more likely to have had mj
+	*****newrace2=3+; if you're native american, you're more likely to have had mj
+	***irmarit=2-; if you're widowed, you're less likely to have had mj
+	*snysell=1-; if you've never sold illegal drugs, you're less likely to have had mj
+	*****yelstgrd=4+; if you had D's in the last semester or grading period, you're more likely to have had mj
+	*****collenr2=3+; if you're 18-22 and not enrolled in colege, more likely mj
+	*****usdrgtst=2+; if workplace doesn't drug test, more likely to have had mj
+	**educcat2=1-; if less than HS education, less likely mj
+	***snrlgsvc=1+; if you haven't been to a religious service in past 12 mo, more likely mj
+	***yesysmj=3+; if most students you know in same grade smoke mj, you're more likely to have had mj
+	*****irmarit=3+; if divorced or separated, more likely mj
+	*****medicare=1-; if covered by medicare, less likely mj ??????????
+	****snrlgsvc=3+; if you have been to 3-5 religious services in past 12 mo, more likely mj
+	****yeystole=1-; if you've never stolen anything over $50, less likely to have had mj
+	!*****edfam18=0+; if household has other family members >=18, more likely to have had mj
+	****newrace2=7-; if you're hispanic, less likely to have had mj
+	****adwrsthk=1+; when emotional probs worst, thought about killing self, more likely mj
+	*****educcat2=3+; some college ed, more likely mj
+	*****pden00=3-; if live in area to small to be statistical area, less likely mj
+	pregage=4+; if got pregnant weird age (12-14, or 45+) more likely to mj
+	*****lifdepres=6-; if never had depression, less likely to have used mj
+
+
+
+
+FULL_SIMPLE_RULE
+(YEYSTOLEXXXX in ("2" "3" "4" "5" "85" "97" "98" "99" )) AND (BOOKED2XXXX in ("1" "85" "97" "98" )) AND (NEWRACE22 in ("1" "3" "4" "6" ))
+	Stolen something worth $50+ once or more in past 12 mo AND have been booked AND white, native american, or mixed
+(YEYSTOLEXXXX in ("2" "3" "4" "5" "85" "97" "98" "99" )) AND (BOOKED2XXXX in ("1" "85" "97" "98" )) AND (NEWRACE22 in ("2" "5" "7" ))
+	Stolen something worth $50+ once or more in past 12 mo AND have been booked AND  black, asian, or hispanic
+(YEYSTOLEXXXX in ("1" "94" )) AND (AGE2 > 3.5) AND (BOOKED2XXXX in ("1" "3" "85" "97" "98" )) AND (NEWRACE22 in ("1" "3" "4" "6" ))
+	Never stolen something worth $50+ in past 12 mo AND older than 14.5 AND have been booked AND white, native american, or mixed
+(YEYSTOLEXXXX in ("2" "3" "4" "5" "85" "97" "98" "99" )) AND (BOOKED2XXXX in ("2" "3" "94" )) AND (NEWRACE22 in ("1" "3" "4" "6" )) AND (COLLENR2 in ("-9" "2" "3" "5" )) AND (SNRLGSVCXXXX in ("1" "2" "3" "4" "85" "98" )) AND (HEALTH in ("2" "3" "4" "5" "94" ))
+	Stolen something worth $50+ once or more in past 12 mo AND never been booked AND white, native american, or mixed AND not a full-time college student AND have been to 24 or fewer religious services in past 12 mo or missing AND health any but excellent (very good, good, fair, or poor)
+(YEYSTOLEXXXX in ("2" "3" "4" "5" "85" "97" "98" "99" )) AND (BOOKED2XXXX in ("2" "3" "94" )) AND (NEWRACE22 in ("1" "3" "4" "6" )) AND (COLLENR2 in ("-9" "2" "3" "5" )) AND (SNRLGSVCXXXX in ("1" "2" "3" "4" "85" "98" )) AND (HEALTH in ("1" ))
+	Stolen something worth $50+ once or more in past 12 mo AND never been booked AND white, native american, or mixed AND not a full-time college student AND have been to 24 or fewer religious services in past 12 mo or missing AND health is excellent
+
+Ever stolen anything, ever been booked, and race all appear in all rules
+Only way to predict you have smoked cig if you haven't stolen anything is if you're also older than 14.5 and HAVE been booked. 
+
+FULL_SIMPLE_RULE
+(YEYSTOLEXXXX in ("1" "94" )) AND (AGE2 <= 3.5) AND (YESTSCIGXXXX in ("1" "2" "4" "85" "94" "97" "98" "99" )) AND (YESTSMJXXXX in ("1" "2" "4" "85" "94" "98" "99" )) AND (YEYFGTSWXXXX in ("1" "94" )) AND (BOOKED2XXXX in ("2" "94" ))
+	Never stole something worth $50+ in past 12 mo AND younger than 14.5 AND none of, a few of, or all of (just not most) students they know in same grade smoke cigarettes AND none of, a few of, or all of (just not most) students they know in same grade smoke mj AND haven't gotten into a serious fight at school/work in past 12 mo or don't know AND never been booked
+(YEYSTOLEXXXX in ("1" "94" )) AND (AGE2 <= 3.5) AND (YESTSCIGXXXX in ("1" "2" "4" "85" "94" "97" "98" "99" )) AND (YESTSMJXXXX in ("1" "2" "4" "85" "94" "98" "99" )) AND (YEYFGTSWXXXX in ("2" "3" "4" "5" "85" "97" "98" ))
+	Never stole something worth $50+ in past 12 mo AND younger than 14.5 AND none of, a few of, or all of (just not most) students they know in same grade smoke cigarettes AND none of, a few of, or all of (just not most) students they know in same grade smoke mj AND have gotten into one or more serious fights at school/work in past 12 mo
+(YEYSTOLEXXXX in ("1" "94" )) AND (AGE2 > 3.5) AND (BOOKED2XXXX in ("2" "94" )) AND (YESTSMJXXXX in ("1" "2" "94" "98" )) AND (YELSTGRDXXXX in ("1" "2" "5" "94" "97" "98" ))
+	Never stole something worth $50+ in past 12 mo AND older than 14.5 AND never been booked AND none of or a few of the students they know in same grade smoke mj AND AND made A's or B's in last grading period or missing 
+(YEYSTOLEXXXX in ("1" "94" )) AND (AGE2 <= 3.5) AND (YESTSCIGXXXX in ("1" "2" "4" "85" "94" "97" "98" "99" )) AND (YESTSMJXXXX in ("3" "97" ))
+	Never stole something worth $50+ in past 12 mo AND younger than 14.5 AND none of, a few of, or all of (just not most) students they know in same grade smoke cigarettes AND most of the students in their grade smoke mj
+(YEYSTOLEXXXX in ("1" "94" )) AND (AGE2 > 3.5) AND (BOOKED2XXXX in ("2" "94" )) AND (YESTSMJXXXX in ("3" "4" "85" "97" "99" )) AND (LIFDEPRSXXXX in ("6" "94" "97" "99" )) AND (YELSTGRDXXXX in ("1" "5" "98" "99" ))
+	Never stole something worth $50+ in past 12 mo AND older than 14.5 AND never been booked AND most or all of the students in the same grade use mj AND never had depression AND made A's in last grading period
+
+Ever stolen anything $50+, age, and amount of peers who do mj in all rules
+*****************Only 2 times age is OLDER than 14.5, appears with A's (and B) on last grading period and only ones without variable for peers who smoke cigarettes
+
+FULL_SIMPLE_RULE
+(YESTSMJXXXX in ("3" "4" "85" "97" "99" )) AND (BOOKED2XXXX in ("1" )) AND (AGE2 <= 16.5) AND (NEWRACE22 in ("1" "3" "4" "6" )) AND (WORKRAND in ("2" ))
+(YESTSMJXXXX in ("3" "4" "85" "97" "99" )) AND (BOOKED2XXXX in ("1" )) AND (AGE2 <= 16.5) AND (NEWRACE22 in ("1" "3" "4" "6" )) AND (WORKRAND in ("3" "94" "97" "98" "99" ))
+(YESTSMJXXXX in ("3" "4" "85" "97" "99" )) AND (BOOKED2XXXX in ("2" "3" "85" "94" "97" "98" )) AND (SNRLGSVCXXXX in ("1" "2" "3" "4" "85" "89" "98" "99" )) AND (WORKRAND in ("2" )) AND (WRKHIRE in ("2" "3" ))
+(YESTSMJXXXX in ("3" "4" "85" "97" "99" )) AND (BOOKED2XXXX in ("1" )) AND (AGE2 <= 16.5) AND (NEWRACE22 in ("1" "3" "4" "6" )) AND (WORKRAND in ("1" ))
+(YESTSMJXXXX in ("3" "4" "85" "97" "99" )) AND (BOOKED2XXXX in ("2" "3" "85" "94" "97" "98" )) AND (WORKRAND in ("2" "3" )) AND (SNRLGSVCXXXX in ("5" "6" "94" "97" )) AND (LIFSTDSXXXX <= 3.5)
+
+FULL_SIMPLE_RULE
+(AGE2 <= 3.5) AND (BOOKED2XXXX in ("2" "94" "98" )) AND (YESTSMJXXXX in ("1" "94" "98" ))
+(AGE2 <= 3.5) AND (BOOKED2XXXX in ("2" "94" "98" )) AND (YESTSMJXXXX in ("2" )) AND (YEYFGTSWXXXX in ("1" "2" "85" "94" "98" )) AND (YELSTGRDXXXX in ("1" "5" "98" ))
+(YESTSMJXXXX in ("3" "4" "85" "97" "99" )) AND (BOOKED2XXXX in ("2" "3" "85" "94" "97" "98" )) AND (WORKRAND in ("1" "94" "97" "98" "99" )) AND (JBSTATR22 in ("10" "11" "8" )) AND (YEATNDYRXXXX in ("2" "94" "98" ))
+(AGE2 <= 3.5) AND (BOOKED2XXXX in ("2" "94" "98" )) AND (YESTSMJXXXX in ("2" )) AND (YEYFGTSWXXXX in ("1" "2" "85" "94" "98" )) AND (YELSTGRDXXXX in ("2" "3" "4" "94" "97" ))
+(YESTSMJXXXX in ("1" "2" "94" "98" )) AND (AGE2 > 3.5) AND (BOOKED2XXXX in ("2" "94" "98" )) AND (YELSTGRDXXXX in ("1" "2" "5" "94" "97" "98" )) AND (YOWRSTHKXXXX in ("2" "94" "97" "98" "99" )) AND (WORKRAND in ("1" "3" "94" "97" "98" "99" ))
+
+
+XXXX Non-DT
+	Cigever=1
+		yeysell=1-, never sold ill drugs less likely
+		yelstgrd=1-, get A's less likely
+		yestscig=1-, none of peers smoke cigs less likely
+		yestscig=3+, most of peers smoke cigs more likely
+		yeystole=1-, never stolen anything 50+ less likely
+		drvaldr=2-, haven't driven drunk past 12 mo less likely
+		booked=1+, been booked more likely
+		rkfqpblt=3+, if only sometimes wear seatbelt as passenger more likely
+		yeyfgtsw=1-, if never been in serious fight at school/work, less likely
+
+	MJEVER=1
+		*****drvaldr=2+, if haven't driven under influence of alc/drugs in past 12 mo, more likely to HAVE had mj
+			.64 confidence, by far highest confidence rule
+		*****drvaldr=1+, if have driven under influence of alc/drugs in past 12 mo, more likely to have had mj
+			only .19 confidence though
+		yestsmj=1-, if none of peers use mj less likely
+		yestsmj=3+, if most of peers use mj more likely
+		newrace2=2+, if black more likely
+		*****drvaonly2=1+, if haven't driven on alc only in past 12 mo, more likely to have had MJ
+		yeysell=1-, if never sold illegal drugs, less likely
+		yeystole=1-, if never stole anything over $50, less likely
+		snrlgsvc=6-, if been to 52+ religious services in past 12 mo, less likely
+		yeyfgtsw=1-, if never been in serious fight at school/work, less likely

@@ -1,0 +1,328 @@
+
+
+
+
+
+
+Classify
+	classify svm cigever
+		*****cigever up with mjever up (ALSO IN GLM)
+			more you do mj, more you're like to have tried cig
+		*****college graduates collenr=1 most likely to have not tried cigs (ALSO IN GLM)
+	classify glm cigever	
+		*****health2=1 (excellent health) up with cigever=2 never smoked
+	classify nb aldaypwk
+		*****sednewb through sednewe more sedatives, more likely drink 7 days/wk (MIXTURE IS DANGEROUS)
+		*****sedrec says alot used sedatives in last 12 months, but also drank every day, must be mixing (DANGEROUS)
+			they both have the same or similar effect to DEPRESS the brain. In this way, they can synergize and compound one anothers' effects
+		****svdaypwk says a lot used sedatives 1, 5, 6 times pwk last year WHILE ALC 7day/wk!
+	classify glm mjever
+		*****older you are, catag6^ and age2^, less likely to have had mj
+			*****points to society moving away from alc towards mj, legalization, popularity, health, safety
+	classify svm mjever
+		*****younger you first had alcohol or cigs, alctry and cigtry lower, more likely to have had mj
+			if broke law to get underage alc, will probably break law to get mj
+	classify glm herever 
+		*****more recently had mj, alc, oxycontin, -rec, more likely to have had heroin
+		*****younger first had cig, mj, oxycontin, -age, more likely to have had heroin
+			*****why OXYCONTIN MAYBE CODEINE TOO with mj, alc, cig? it's opioid like heroin and can lead to her use or develop from her use. mostly to her use
+	classify svm herever
+		*****oxyage and oxyrec lower, herever higher (OXYCONTIN, MAYBE CODEINE TOO)
+		*****irmarit=3 divorced, separated, to lesser extent widowed, herever higher
+	NEW CIGEVER CLASSIFICATION
+		*****newrace22=2-; if you're black, less likely to have had cig
+		*****newrace22=1+; if you're white, more likely to have had cig
+		*****yelstgrd=1-; if you had A's in the last semester or grading period, you're less likely to have had cig
+		inverse is farther down list
+		****newrace22=5-; if you're asian, you're less likely to have smoked cig
+		*****yelstgrd=4+; if you had D's in the last semester or grading period, you're more likely to have had cig
+		*****health=5+; if you have poor health, you're more likely to have had cig
+		*****yeystole=4+; if you've stolen 6-9 things over $50, then you're more likely to have had cig
+	NEW MJEVER CLASSIFICATION
+		*****newrace2=5-; if you're asian, you're less likely to have had mj
+		*****irhh65_2=3-; if there are 2 or more people aged 65+ in household, you're less likely to have had mj
+			!*****edfam18=0+; if household has other family members >=18, more likely to have had mj
+		*****pregnant=1+; if you're pregnant, you're more likely to have had mj
+		*****newrace2=3+; if you're native american, you're more likely to have had mj
+		*****yelstgrd=4+; if you had D's in the last semester or grading period, you're more likely to have had mj
+		*****collenr2=3+; if you're 18-22 and not enrolled in colege, more likely mj
+		*****usdrgtst=2+; if workplace doesn't drug test, more likely to have had mj
+		*****irmarit=3+; if divorced or separated, more likely mj
+			***irmarit=2-; if you're widowed, you're less likely to have had mj
+		****newrace2=7-; if you're hispanic, less likely to have had mj
+		*****lifdepres=6-; if never had depression, less likely to have used mj
+		LOOK AT THESE AGAIN, MISSING SOME MAYBE
+	XXXX Cig=1
+		yeysell=1-, never sold ill drugs less likely
+		yelstgrd=1-, get A's less likely
+		yestscig=1-, none of peers smoke cigs less likely
+		yestscig=3+, most of peers smoke cigs more likely
+		yeystole=1-, never stolen anything 50+ less likely
+		drvaldr=2-, haven't driven drunk past 12 mo less likely
+		booked=1+, been booked more likely
+		rkfqpblt=3+, if only sometimes wear seatbelt as passenger more likely
+		yeyfgtsw=1-, if never been in serious fight at school/work, less likely
+	XXXX Cig=0
+		*****drvaldr=2+, if haven't driven under influence of alc/drugs in past 12 mo, more likely to HAVE had mj
+			.64 confidence, by far highest confidence rule
+		*****drvaldr=1+, if have driven under influence of alc/drugs in past 12 mo, more likely to have had mj
+			only .19 confidence though
+		yestsmj=1-, if none of peers use mj less likely
+		yestsmj=3+, if most of peers use mj more likely
+		newrace2=2+, if black more likely
+		*****drvaonly2=1+, if haven't driven on alc only in past 12 mo, more likely to have had MJ
+		yeysell=1-, if never sold illegal drugs, less likely
+		yeystole=1-, if never stole anything over $50, less likely
+		snrlgsvc=6-, if been to 52+ religious services in past 12 mo, less likely
+		yeyfgtsw=1-, if never been in serious fight at school/work, less likely
+
+
+DT
+	NEW CIGEVER=1; (HAVE SMOKED)
+		****Looks like to have smoked a cigarette, you're likely to have had the legal, easier obtained gateway drug alcohol around 15 for the first time, then moved on to the easiest obtained illegal drug MJ a few years later. 
+		*****Never having used hallucinogens predicts having smoked a cig in 4 of 7 rules, could they be opposite drugs? News: Hallucinogens like MDMA and psilocybin used to treat both nicotine/cig addiction and alcoholism
+	NEW CIGEVER=2; (HAVENT SMOKED)
+		Of those 5 rules with never had alcohol, 2 also say they're younger than 14.5
+			*****Idea: Keeping alcohol away from children makes them less likely to ever smoke a cigarette
+		Of those 2 rules with have had alcohol, both are followed by them being enrolled in any school. 
+			*****So being in school is associated with alcohol but not cig use.
+		*****Top confidence rule rules out top 3 drugs (marijuana, alcohol, tobacco) in first 2 terms: No marijuana in a year or never at all, and no alcohol ever means no tobacco
+	NON-DRUG CIGEVER=1
+		*****Cigever=1 Best predictor is having sold illegal drugs, cigever=2 best predictor is never having sold illegal drugs, other common are booked and race
+		*****Has been to a religious service less than 24 times in past 12 mo is cool indicator (appears twice)
+		*****Never been booked (rare, only in 2 rules the rest are have been booked) appears exclusively with college enrollment (random) religious services (<24), and health (different)
+	NON-DRUG CIGEVER=2
+		*****Amount of peers who smoke cigs most common factor with age and sold illegal drugs
+		*****2 rules with age other than <14.5 predict having A's in last grading period (first also allows B's) (only times grades appear) 
+	NON-DRUG MJEVER=1
+		*****Amount of peers who smoke mj most common with age and booked
+	NON-DRUG MJEVER=2
+		*****Amount of peers who do mj most common with age, sold illegal, booked
+	NEW CIG=1
+		Only way to predict you have smoked cig if you haven't stolen anything is if you're also older than 14.5 and HAVE been booked. 
+	NEW CIG=0
+		*****Only 2 times age is OLDER than 14.5, appears with A's (and B) on last grading period and only ones without variable for peers who smoke cigarettes
+
+
+
+
+
+
+
+Classify
+	@classify svm cigever
+		@(CONNECTION H) *****college graduates collenr=1 most likely to have not tried cigs (ALSO IN GLM)
+	@classify glm cigever	
+		@*****health2=1 (excellent health) up with cigever=2 never smoked
+			@*****health=5+; if you have poor health, you're more likely to have had cig
+	@classify nb aldaypwk
+		@*****sednewb through sednewe more sedatives, more likely drink 7 days/wk (MIXTURE IS DANGEROUS)
+			@*****sedrec says alot used sedatives in last 12 months, but also drank every day, must be mixing (DANGEROUS)
+			@they both have the same or similar effect to DEPRESS the brain. In this way, they can synergize and @compound one anothers' effects
+			@****svdaypwk says a lot used sedatives 1, 5, 6 times pwk last year WHILE ALC 7day/wk!
+	@classify glm mjever
+		@*****older you are, catag6^ and age2^, less likely to have had mj
+			@*****points to society moving away from alc towards mj, legalization, popularity, health, safety
+	@classify svm mjever
+		@*****younger you first had alcohol or cigs, alctry and cigtry lower, more likely to have had mj
+			@if broke law to get underage alc, will probably break law to get mj
+	@classify glm herever 
+		@*****younger first had cig, mj, oxycontin, -age, more likely to have had heroin
+			@*****why OXYCONTIN MAYBE CODEINE TOO with mj, alc, cig? it's opioid like heroin and can lead to her use or @develop from her use. mostly to her use
+			@*****oxyage and oxyrec lower, herever higher (OXYCONTIN, MAYBE CODEINE TOO)
+		@*****irmarit=3 divorced, separated, to lesser extent widowed, herever higher
+	@NEW CIGEVER CLASSIFICATION
+		@*****newrace22=2-; if you're black, less likely to have had cig
+		@*****newrace22=1+; if you're white, more likely to have had cig
+		@(CONNECTION A) *****yelstgrd=1-; if you had A's in the last semester or grading period, you're less likely to @have had cig
+			@yelstgrd=1-, get A's less likely
+			@*****yelstgrd=4+; if you had D's in the last semester or grading period, you're more likely to have had cig
+	@NEW MJEVER CLASSIFICATION
+		@*****newrace2=5-; if you're asian, you're less likely to have had mj
+			@*****newrace2=3+; if you're native american, you're more likely to have had mj (Just separate race @analysis?)
+		@***snrlgsvc=6-; if you've been to more than 52 religious services in past 12 mo, you're less likely to have @had mj
+		@*****irhh65_2=3-; if there are 2 or more people aged 65+ in household, you're less likely to have had mj
+			@!*****edfam18=0+; if household has other family members >=18, more likely to have had mj
+		@*****pregnant=1+; if you're pregnant, you're more likely to have had mj
+		@*****yelstgrd=4+; if you had D's in the last semester or grading period, you're more likely to have had mj
+		@*****collenr2=3+; if you're 18-22 and not enrolled in colege, more likely mj
+		@(CONNECTION B) ***yesysmj=3+; if most students you know in same grade smoke mj, you're more likely to have had @mj
+		@*****usdrgtst=2+; if workplace doesn't drug test, more likely to have had mj
+		@****yeystole=1-; if you've never stolen anything over $50, less likely to have had mj
+		@*****irmarit=3+; if divorced or separated, more likely mj
+			@***irmarit=2-; if you're widowed, you're less likely to have had mj
+		@*****lifdepres=6-; if never had depression, less likely to have used mj
+	@XXXX Cigever=1
+		@(CONNECTION C) yeysell=1-, never sold ill drugs less likely
+		@(CONNECTION D) yestscig=1-, none of peers smoke cigs less likely
+			@yestscig=3+, most of peers smoke cigs more likely
+		@(CONNECTION E) yeystole=1-, never stolen anything 50+ less likely
+		@(CONNECTION F?) drvaldr=2-, haven't driven drunk past 12 mo less likely
+		@(CONNECTION G) booked=1+, been booked more likely
+		@(CONNECTION F?) rkfqpblt=3+, if only sometimes wear seatbelt as passenger more likely
+		@yeyfgtsw=1-, if never been in serious fight at school/work, less likely
+	@XXXX MJever=1
+		@*****drvaldr=2+, if haven't driven under influence of alc/drugs in past 12 mo, more likely to HAVE had mj
+			@.64 confidence, by far highest confidence rule
+			@*****drvaldr=1+, if have driven under influence of alc/drugs in past 12 mo, more likely to have had mj
+				@only .19 confidence though
+			@*****drvaonly2=1+, if haven't driven on alc only in past 12 mo, more likely to have had MJ
+		@(CONNECTION B) yestsmj=1-, if none of peers use mj less likely
+			@yestsmj=3+, if most of peers use mj more likely
+		@yeyfgtsw=1-, if never been in serious fight at school/work, less likely
+
+
+DT
+	@NEW CIGEVER=1; (HAVE SMOKED)
+		@****Looks like to have smoked a cigarette, you're likely to have had the legal, easier obtained gateway drug @alcohol around 15 for the first time, then moved on to the easiest obtained illegal drug MJ a few years later. 
+		@*****Never having used hallucinogens predicts having smoked a cig in 4 of 7 rules, could they be opposite @drugs? News: Hallucinogens like MDMA and psilocybin used to treat both nicotine/cig addiction and alcoholism
+	@NEW CIGEVER=2; (HAVENT SMOKED)
+		@Of those 5 rules with never had alcohol, 2 also say they're younger than 14.5
+			@*****Idea: Keeping alcohol away from children makes them less likely to ever smoke a cigarette
+		@(CONNECTION H) Of those 2 rules with have had alcohol, both are followed by them being enrolled in any school. 
+			@*****So being in school is associated with alcohol but not cig use.
+	@NON-DRUG CIGEVER=1
+		@(CONNECTION C) (CONNECTION G) *****Cigever=1 Best predictor is having sold illegal drugs, cigever=2 best @predictor is never having sold illegal drugs, other common are booked and race
+		@(CONNECTION G) *****Never been booked (rare, only in 2 rules the rest are have been booked) appears @exclusively with college enrollment (random) religious services (<24), and health (different)
+	@NON-DRUG CIGEVER=2
+		@(CONNECTION C) (CONNECTION D) *****Amount of peers who smoke cigs most common factor with age and sold illegal @drugs
+	@NON-DRUG MJEVER=1
+		@(CONNECTION B) *****Amount of peers who smoke mj most common with age and booked
+	@NEW CIG=1
+		@(CONNECTION E) (CONNECTION G) Only way to predict you have smoked cig if you haven't stolen anything is if @you're also older than 14.5 and HAVE been booked. 
+	@NEW CIG=2
+		@(CONNECTION A) *****Only 2 times age is OLDER than 14.5, appears with A's (and B) on last grading period and @only ones without variable for peers who smoke cigarettes
+
+
+
+
+
+
+
+
+
+
+
+
+CIG FREQUENCY
+	ZZZZZ INCLUDE GRAPH "#Days in past 30 days that respondent smoked" FROM FIRST RMD WITH ALL ON 30 DAYS
+CIG EDUCATION
+	NEW CIG=2
+		ZZZ (BASICALLY IN REPORT) (CONNECTION A) Only 2 times age is OLDER than 14.5, appears with A's (and B) on last grading period and only ones without variable for peers who smoke cigarettes
+			yelstgrd=1-; if you had A's in the last semester or grading period, you're less likely to have had cig
+			yelstgrd=1-, get A's less likely
+			yelstgrd=4+; if you had D's in the last semester or grading period, you're more likely to have had cig
+CIG HEALTH
+	classify glm cigever	
+		ZZZ (EXPECTED..) health2=1 (excellent health) up with cigever=2 never smoked
+			health=5+; if you have poor health, you're more likely to have had cig
+CIG CRIME (AA) 
+	XXXX Cigever=1
+		Z (EXPECTED)(CONNECTION C) yeysell=1-, never sold ill drugs less likely
+		ZZZ (EXPECTED)(CONNECTION E) yeystole=1-, never stolen anything 50+ less likely
+		ZZ (EXPECTED)(CONNECTION F?) drvaldr=2-, haven't driven drunk past 12 mo less likely
+		ZZ (EXPECTED)(CONNECTION G) booked=1+, been booked more likely
+		ZZZZ (EXPECTED BUT COOL IF SIGNIFICANT)(CONNECTION F?) rkfqpblt=3+, if only sometimes wear seatbelt as passenger more likely
+	NON-DRUG CIGEVER=1
+		ZZ (EXPECTED BUT OK IF I WANT TO HAVE SOLD ILLEGAL DRUGS) (CONNECTION C) (CONNECTION G) Cigever=1 Best predictor is having sold illegal drugs, cigever=2 best predictor is never having sold illegal drugs, other common are booked and race
+		ZZ (WHAT??)(CONNECTION G) Never been booked (rare, only in 2 rules the rest are have been booked) appears exclusively with college enrollment (random) religious services (<24), and health (different)
+	NEW CIG=1
+		ZZ (STUPID SOUNDING) (CONNECTION E) (CONNECTION G) Only way to predict you have smoked cig if you haven't stolen anything is if you're also older than 14.5 and HAVE been booked. 
+CIG PEERS (AA)
+	XXXX Cigever=1
+		ZZZZZ (EXPECTED BUT IMPORTANT) (CONNECTION D) yestscig=1-, none of peers smoke cigs less likely
+			yestscig=3+, most of peers smoke cigs more likely
+			this is most important cig factor along with sold illegal drugs and age, include that?
+		ZZZZZ (EXPECTED BUT COOL) (THESE IN RESULTS BUT ONLY ABOUT ILLICIT DRUGS NOT CIG) yeyfgtsw=1-, if never been in serious fight at school/work, less likely
+CIG AND HALLUCINOGENS
+	NEW CIGEVER=1; (HAVE SMOKED)
+		ZZZZZ WRONG (COOL AND ACTIONABLE!!!!) Never having used hallucinogens predicts having smoked a cig in 4 of 7 rules, could they be opposite drugs? News: Hallucinogens like MDMA and psilocybin used to treat both nicotine/cig addiction and alcoholism
+CIG FROM ALCOHOL AGE (CANNATA)
+	|NEW CIGEVER=2; (HAVENT SMOKED)
+	|	ZZZZZ (CANNATA!! MORE EVIDENCE OF UNDERAGE ALCOHOL => CIG USE!) Of those 5 rules with never had alcohol, 2 also |	say they're younger than 14.5
+	|		Idea: Keeping alcohol away from children makes them less likely to ever smoke a cigarette
+	|		Underage drinking so common (show graphs for that) and cig so dangerous this is problem
+	|NEW CIGEVER=1; (HAVE SMOKED)
+	|	ZZZZZ (COULD BE COOL IF UNDERAGE ALCOHOL PREDICTS CIG (MAYBE MJ) USE) Looks like to have smoked a cigarette, |   you're likely to have had the legal, easier obtained gateway drug alcohol around 15 for the first time, then |   moved on to the easiest obtained illegal drug MJ a few years later. 
+	|classify svm mjever
+	|	ZZZZZ younger you first had alcohol or cigs, alctry and cigtry lower, more likely to have had mj
+	|		if broke law to get underage alc, will probably break law to get mj
+
+
+
+
+
+
+
+MJ EDUCATION
+	NEW MJEVER CLASSIFICATION
+		ZZZ (IN RESULTS BUT ONLY EDUCATION LEVEL NOT GRADES) yelstgrd=4+; if you had D's in the last semester or grading period, you're more likely to have had mj
+		collenr2=3+; if you're 18-22 and not enrolled in colege, more likely mj
+	ZZZZZ MJ USE INCREASES WITH EDUCATION GRAPH ON SECOND RMD
+MJ HEALTH
+	NEW MJEVER CLASSIFICATION
+		ZZZZZ (COOL IF INVERSE TRUE!) lifdepres=6-; if never had depression, less likely to have used mj		
+MJ RACE
+	NEW MJEVER CLASSIFICATION
+		ZZ (THIS MIGHT BE TOO SIMPLE TO INCLUDE) newrace2=5-; if you're asian, you're less likely to have had mj
+			newrace2=3+; if you're native american, you're more likely to have had mj (Just separate race analysis?)
+MJ CRIME
+	NEW MJEVER CLASSIFICATION
+		ZZ (EXPECTED) yeystole=1-; if you've never stolen anything over $50, less likely to have had mj
+	XXXX MJever=1
+		ZZZZZ (UNEXPECTED COOL FIGURE THIS OUT) drvaldr=2+, if haven't driven under influence of alc/drugs in past 12 mo, more likely to HAVE had mj
+			.64 confidence, by far highest confidence rule
+			drvaldr=1+, if have driven under influence of alc/drugs in past 12 mo, more likely to have had mj
+				only .19 confidence though
+			drvaonly2=1+, if haven't driven on alc only in past 12 mo, more likely to have had MJ
+MJ PEERS
+	XXXX MJever=1 and NEW MJEVER CLASSIFICATION
+		ZZZZZ (EXPECTED BUT IMPORTANT) (CONNECTION B) yestsmj=1-, if none of peers use mj less likely
+			yestsmj=3+, if most of peers use mj more likely
+			That's most common with age and booked coming next (from non-drug mjever=1)
+		ZZZZZ (EXPECTED BUT COOL) yeyfgtsw=1-, if never been in serious fight at school/work, less likely		
+MJ AGE
+	classify glm mjever
+		ZZZZZ older you are, catag6^ and age2^, less likely to have had mj
+			points to society moving away from alc towards mj, legalization, popularity, health, safety
+			USE SECOND RMD FILE GRAPH FOR THIS
+MJ RELIGION
+	NEW MJEVER CLASSIFICATION
+		ZZZZZ (EXPECTED BUT COOL) snrlgsvc=6-; if you've been to more than 52 religious services in past 12 mo, you're less likely to have had mj
+MJ FAMILY
+	NEW MJEVER CLASSIFICATION
+		ZZZZZ (KINDA EXPECTED? BUT COOL!) irhh65_2=3-; if there are 2 or more people aged 65+ in household, you're less likely to have had mj
+			ZZZZZ (NOT EXPECTED AND COOL!) edfam18=0+; if household has other family members >=18, more likely to have had mj
+		ZZZZZ (VERY UNEXPECTED CHECK THIS, WHAT?!) pregnant=1+; if you're pregnant, you're more likely to have had mj
+		ZZZZZ irmarit=3+; if divorced or separated, more likely mj
+			ZZZZZ (HUH?!?!?!) irmarit=2-; if you're widowed, you're less likely to have had mj
+MJ CAREER
+	NEW MJEVER CLASSIFICATION
+		ZZZZZ usdrgtst=2+; if workplace doesn't drug test, more likely to have had mj
+
+
+
+
+
+ALCOHOL SEDATIVES (DAYS PWK)
+	classify nb aldaypwk
+		ZZZZZ sednewb through sednewe more sedatives, more likely drink 7 days/wk (MIXTURE IS DANGEROUS)
+			sedrec says alot used sedatives in last 12 months, but also drank every day, must be mixing (DANGEROUS)
+			they both have the same or similar effect to DEPRESS the brain. In this way, they can synergize and compound one anothers' effects
+			svdaypwk says a lot used sedatives 1, 5, 6 times pwk last year WHILE ALC 7day/wk!
+
+
+
+
+
+HEROIN MARITAL STATUS
+	classify glm herever 
+		ZZZZZ irmarit=3 divorced, separated, to lesser extent widowed, herever higher
+HEROIN OXYCONTIN
+	classify glm herever 
+		ZZZZZ younger first had cig, mj, oxycontin, -age, more likely to have had heroin
+			why OXYCONTIN MAYBE CODEINE TOO with mj, alc, cig? it's opioid like heroin and can lead to her use or develop from her use. mostly to her use
+			oxyage and oxyrec lower, herever higher (OXYCONTIN, MAYBE CODEINE TOO)
+
+
+
