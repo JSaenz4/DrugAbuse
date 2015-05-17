@@ -10,7 +10,7 @@ Drug Abuse Report
 
 **The NSDUH is the primary source on statistics about the drug use of the United States population and has been conducted by the federal government since 1971. The survey is conducted through face-to-face, computer-assisted interviews with a representative sample in the respondents' place of residence.**
 
-**Due to the sensitive nature of this survey, no attemps were made or shall be made to connect responses to respondents. If any connections are made, report them to CBHSQ and SAMHDA (samhda-support@icpsr.umich.edu)**
+**Due to the sensitive nature of this survey, no attempts were made or shall be made to connect responses to respondents. If any connections are made, report them to CBHSQ and SAMHDA (samhda-support@icpsr.umich.edu)**
 
 **The purpose of this survey is to measure the prevalence and correlates of drug use and abuse in the United States. Subjects are from the United States and are aged 12 and over. The survey oversamples the younger populations, and numbers of respondents are equally distributed among the age groups of 12-17, 18-25, and 26+**
 
@@ -18,7 +18,7 @@ Drug Abuse Report
 
 **Findings included in this report were only the ones that were not covered by the official NSDUH 2013 results which are available at [the SAMHSA website](http://www.samhsa.gov/data/sites/default/files/NSDUHresultsPDFWHTML2013/Web/NSDUHresults2013.pdf).**
 
-**There were a total of 55,160 (with a response rate of 84%), each of whom were paid $30 for their time.**
+**There were a total of 55,160 (with a response rate of 84%) responces, each of whom were paid $30 for their time.**
 
 ###RStudio Session Information
 ```{r}
@@ -406,7 +406,7 @@ ggplot(thesubset, aes(x=ALCTRY, y=CIGTRY, colour=as.factor(MJEVER)))+geom_point(
 
 ```
 
-Note that red points indicate the respondent has used marijuana before, and overplotting due to the 55,000+ samples was treated by making points slightly transparent (so large amounts of points together become more opaque) and by "jittering" (or offsetting points from one another so they do not cover one another) the points. Additionally, the legal drinking age is represented by a vertical line and the legal smoking age is represented by a horizontal line. These lines show that premature alcohol use is more associated with marijuana use than premature cigarette use because the blue points cross the cigarette line more often than the alcohol line. When looking at age of first use of alcohol vs cigarettes colored by marijuana use, there is some support for the idea that early cigarette and alcohol use is correlated with marijuana use. 
+Note that blue points indicate the respondent has used marijuana before, and overplotting due to the 55,000+ samples was treated by making points slightly transparent (so large amounts of points together become more opaque) and by "jittering" (or offsetting points from one another so they do not cover one another) the points. Additionally, the legal drinking age is represented by a vertical line and the legal smoking age is represented by a horizontal line. These lines show that premature alcohol use is more associated with marijuana use than premature cigarette use because the blue points cross the cigarette line more often than the alcohol line. When looking at age of first use of alcohol vs cigarettes colored by marijuana use, there is some support for the idea that early cigarette and alcohol use is correlated with marijuana use. 
 
 ###Marijuana
 
