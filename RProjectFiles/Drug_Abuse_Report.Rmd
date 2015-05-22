@@ -367,7 +367,7 @@ Numerous data mining algorithms suggested a connection between the earlier age a
 
 ![](./images/2b.PNG)
 
-When predicting if a respondent has ever used marijuana using classification algorithms, CIGTRY and ALCTRY, age of first use of cigarettes and alcohol, were high confidence predictors of marijuana use the lower their values were. 
+When predicting if a respondent has ever had a cigarette or marijuana using classification algorithms, CIGTRY and ALCTRY, age of first use of cigarettes and alcohol, were high confidence predictors of cigarette and marijuana use the lower their values were. 
 
 
 ```{r, echo=FALSE}
