@@ -363,11 +363,11 @@ Again we see a linear relationship that suggests that violence is associated wit
 
 Numerous data mining algorithms suggested a connection between the earlier age a respondent has their first drink and whether or not they have tried a cigarette before, we investigate this by looking at age of first use of alcohol colored by cigarette usage. 
 
-![](./images/2a.PNG)
+![](./images/99a.png)
 
-![](./images/2b.PNG)
+![](./images/99b.png)
 
-When predicting if a respondent has ever had a cigarette or marijuana using classification algorithms, CIGTRY and ALCTRY, age of first use of cigarettes and alcohol, were high confidence predictors of cigarette and marijuana use the lower their values were. 
+When predicting if a respondent has ever had a cigarette using classification algorithms, ALCTRY, age at which the respondent first had alcohol, had high confidence correlation with the respondent ever having a cigarette. Namely, the younger a person had alcohol for the first time, the more likely it is that they have had a cigarette. In fact, another alcohol variable, ALCYRTOT, the amount of alcohol the person has had in the past year, increases along with cigarette usage and is the top confidence variable. 
 
 
 ```{r, echo=FALSE}
